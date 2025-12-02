@@ -7,7 +7,7 @@
     "Domain Driven Design",
     "Clean Architecture"
   ],
-  "name": "API Template",
+  "name": "ASP.NET Core Solution",
   "identity": "ApiTemplate",
   "shortName": "api-template",
   "sourceName": "ApiTemplate",
@@ -15,5 +15,18 @@
   "tags": {
     "language": "C#",
     "type": "solution"
-  }
+  },
+  "sources": [
+    {
+      "exclude": [
+        ".git/**",
+        ".template.config/**",
+        ".vscode/**",
+        
+        ".gitignore",
+        "README.md",
+        "License.txt"
+      ]
+    }
+  ]
 }
