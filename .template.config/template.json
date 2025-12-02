@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Javier Lima",
+  "classifications": [
+    "Web API",
+    "ASP.NET Core",
+    "Domain Driven Design",
+    "Clean Architecture"
+  ],
+  "name": "API Template",
+  "identity": "ApiTemplate",
+  "shortName": "api-template",
+  "sourceName": "ApiTemplate",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  }
+}
