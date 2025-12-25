@@ -2,7 +2,7 @@ using ApiTemplate.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ApiTemplate.Api.Tests.ApiFactories;
+namespace ApiTemplate.Api.Tests;
 
 public static class DependencyInjection
 {

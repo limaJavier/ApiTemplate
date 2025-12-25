@@ -9,36 +9,38 @@ using Xunit.Abstractions;
 
 namespace ApiTemplate.Api.Tests.Features.Common;
 
-public class IsolatedTests(
+public abstract class IsolatedTests(
     ITestOutputHelper output,
     PostgresContainerFixture postgresContainerFixture
 ) : IClassFixture<PostgresContainerFixture>, IAsyncLifetime
 {
-    protected ITestOutputHelper _output = output;
     private readonly PostgreSqlContainer _container = postgresContainerFixture.Container;
     private IsolatedApiFactory _factory = null!;
+    private IServiceScope _scope = null!;
+    protected ITestOutputHelper _output = output;
+    protected IServiceProvider _serviceProvider = null!;
     protected HttpClient _client = null!;
-    protected IServiceScope _scope = null!;
     protected ApiTemplateDbContext _dbContext = null!;
 
-    public async Task InitializeAsync()
+    public virtual async Task InitializeAsync()
     {
         // Resolve dependencies
         var connectionString = await CreateDatabaseAsync(_container);
         _factory = new IsolatedApiFactory(connectionString);
         _client = _factory.CreateClient();
         _scope = _factory.Services.CreateScope();
+        _serviceProvider = _scope.ServiceProvider;
         _dbContext = _scope.ServiceProvider.GetRequiredService<ApiTemplateDbContext>();
 
-        await _dbContext.Database.MigrateAsync();
+        await _dbContext.Database.MigrateAsync(); // Migrate schema
     }
 
-    public async Task DisposeAsync()
+    public virtual async Task DisposeAsync()
     {
         // Dispose dependencies
-        await _factory.DisposeAsync();
-        _scope.Dispose();
         await _dbContext.DisposeAsync();
+        _scope.Dispose();
+        await _factory.DisposeAsync();
     }
 
     private static async Task<string> CreateDatabaseAsync(PostgreSqlContainer container)

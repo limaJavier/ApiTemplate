@@ -11,14 +11,14 @@ public class GetItemsTests(ITestOutputHelper output, PostgresContainerFixture po
     [Fact]
     public async Task ShouldReturnItems()
     {
-        // Arrange
+        //** Arrange
 
-        // Act
+        //** Act
         var httpResponse = await _client.GetAsync("/items");
         httpResponse.EnsureSuccessStatusCode();
         var response = (await httpResponse.Content.ReadFromJsonAsync<List<ItemResponse>>())!;
 
-        // Assert
+        //** Assert
         foreach (var item in response)
             _output.WriteLine(item.Name);
     }
