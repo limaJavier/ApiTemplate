@@ -1,10 +1,10 @@
 using ApiTemplate.Api.Exceptions;
-using ApiTemplate.Api.Features.Items.Responses;
+using ApiTemplate.Api.Features.Items.Common;
 using ApiTemplate.Application.Features.Items.Queries.GetItems;
 using FastEndpoints;
 using Mediator;
 
-namespace ApiTemplate.Api.Features.Items.Endpoints;
+namespace ApiTemplate.Api.Features.Items.GetItems;
 
 public class GetItemsEndpoint(
     ISender sender,

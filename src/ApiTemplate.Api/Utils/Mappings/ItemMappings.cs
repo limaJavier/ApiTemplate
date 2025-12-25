@@ -1,4 +1,4 @@
-using ApiTemplate.Api.Features.Items.Responses;
+using ApiTemplate.Api.Features.Items.Common;
 using ApiTemplate.Application.Features.Items.Queries.Common;
 using Mapster;
 
