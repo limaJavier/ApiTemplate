@@ -1,4 +1,3 @@
-using ApiTemplate.Application.Common;
 using ApiTemplate.Application.Common.Interfaces;
 using ApiTemplate.Infrastructure.Middlewares;
 using Mediator;

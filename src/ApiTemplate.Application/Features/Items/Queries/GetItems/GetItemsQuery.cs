@@ -4,4 +4,6 @@ using Mediator;
 
 namespace ApiTemplate.Application.Features.Items.Queries.GetItems;
 
-public record GetItemsQuery() : IQuery<Result<List<ItemResult>>>;
+public record GetItemsQuery(
+    int Count
+) : IQuery<Result<List<ItemResult>>>;

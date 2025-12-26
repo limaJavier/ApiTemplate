@@ -1,1 +1,5 @@
 GET {{host}}/items
+
+###
+
+GET {{host}}/items?count=10

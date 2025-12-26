@@ -1,4 +1,4 @@
-using ApiTemplate.Application.Common;
+using ApiTemplate.Application.Common.Interfaces;
 using ApiTemplate.Domain.Common;
 using ApiTemplate.Infrastructure.Persistence;
 using Mediator;
