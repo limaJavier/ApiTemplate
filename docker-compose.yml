@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: apitemplate-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_HTTP_PORTS: 8080
+      ConnectionStrings__ApiTemplate: "Host=db;Port=5432;Database=ApiTemplate;Username=postgres;Password=password"
+    ports:
+      - "8080:8080"
+    networks:
+      - apitemplate-network
+
+  db:
+    container_name: apitemplate-db
+    image: postgres:18.1
+    environment:
+      POSTGRES_DB: ApiTemplate
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - apitemplate-network
+
+volumes:
+  postgres_data:
+
+networks:
+  apitemplate-network:
+    driver: bridge
