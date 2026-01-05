@@ -1,6 +1,7 @@
 using ApiTemplate.Application.Common.Interfaces;
 using ApiTemplate.Infrastructure.Persistence;
 using ApiTemplate.Infrastructure.Services;
+using ApiTemplate.Infrastructure.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,10 +18,14 @@ public static class DependencyInjection
             options.UseNpgsql(connectionString));
 
         // Add services
-        services.AddScoped<IUnitOfWork>(serviceProvider => 
+        services.AddScoped<IUnitOfWork>(serviceProvider =>
             serviceProvider.GetRequiredService<ApiTemplateDbContext>());
 
         services.AddScoped<IApplicationEventQueue, ApplicationEventQueue>();
+
+        services.Configure<JwtSettings>(
+           configuration.GetSection(nameof(JwtSettings))
+        );
 
         return services;
     }

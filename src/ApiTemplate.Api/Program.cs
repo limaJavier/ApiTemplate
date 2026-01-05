@@ -5,7 +5,7 @@ using ApiTemplate.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddPresentation();
+    builder.Services.AddPresentation(builder.Configuration);
     builder.Services.AddApplication();
     builder.Services.AddDomain();
     builder.Services.AddInfrastructure(builder.Configuration);
